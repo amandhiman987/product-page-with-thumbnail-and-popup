@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang=en>
+  <head>
+    <meta charset=utf-8>
+    <title> Product Page </title>
+    <link href="http://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel=stylesheet>
+    <link href="assets/css/slick.css" rel=stylesheet>
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <style type="text/css">
+
+
+.mfp-with-zoom .mfp-container,
+.mfp-with-zoom.mfp-bg {
+  opacity: 0;
+  -webkit-backface-visibility: hidden;
+  /* ideally, transition speed should match zoom duration */
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.mfp-with-zoom.mfp-ready .mfp-container {
+    opacity: 1;
+}
+.mfp-with-zoom.mfp-ready.mfp-bg {
+    opacity: 0.8;
+}
+
+.mfp-with-zoom.mfp-removing .mfp-container,
+.mfp-with-zoom.mfp-removing.mfp-bg {
+  opacity: 0;
+}
+
+
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+         <!--  <div class="parent-container">
+          <a href="http://dummyimage.com/300">Open popup 1</a>
+          <a href="http://dummyimage.com/300">Open popup 2</a>
+          <a href="http://dummyimage.com/300">Open popup 3</a>
+        </div> -->
+          <div>
+    
+      <!-- MAIN SLIDES -->
+      <div class="slider parent-container">
+        <figure>
+          <a href="product-images/product-img1.png"><img src="product-images/product-img1.png" alt="One"></a>
+          
+        </figure>
+        <figure>
+          <a href="product-images/product-img2.png"><img src="product-images/product-img2.png" alt="One"></a>
+          
+        </figure>
+        <figure>
+          <a href="product-images/product-img3.png"><img src="product-images/product-img3.png" alt="One"></a>
+          
+        </figure>
+      </div>
+      
+      <!-- THUMBNAILS -->
+      <div class="slider-nav-thumbnails">
+        <div><img src="product-images/product-img1.png" alt="One">
+        </div>
+        <div><img src="product-images/product-img2.png" alt="Two">
+        </div>
+        <div><img src="product-images/product-img3.png" alt="Three">
+        </div>
+      </div>
+    </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="product-single-description">
+            <h1 class="product-title">Original</h1>
+            <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec sagittis sem nibh id elit.</p>
+            <p class="ingredients"><b>Ingredients:</b> Sed non  mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+            <table cellpadding="0" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>Small</th>
+                  <th>Medium</th>
+                  <th>Large</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>.025lbs</td>
+                  <td>.5lbs</td>
+                  <td>1lb</td>
+                </tr>
+                <tr>
+                  <td>2x2</td>
+                  <td>3x3</td>
+                  <td>4x4</td>
+                </tr>
+                <tr>
+                  <td>1% Alcohol</td>
+                  <td>1% Alcohol</td>
+                  <td>1% Alcohol</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="more-flavours">
+              <h5>More Flavours:</h5>
+              <ul>
+                <li>
+                  <img src="" alt="">
+                  <h6>Coconut</h6>
+                </li>
+                <li>
+                  <img src="" alt="">
+                  <h6>Chocolate</h6>
+                </li>
+                <li>
+                  <img src="" alt="">
+                  <h6>Pina Colada</h6>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://kenwheeler.github.io/slick/slick/slick.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script>
+        $('.slider').slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: false,
+          fade: false,
+          asNavFor: '.slider-nav-thumbnails',
+
+         });
+
+         $('.slider-nav-thumbnails').slick({
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          asNavFor: '.slider',
+          dots: true,
+          //  centerMode: true,
+          focusOnSelect: true
+         });
+
+
+         //remove active class from all thumbnail slides
+         $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+
+         //set active class to first thumbnail slides
+         $('.slider-nav-thumbnails .slick-slide').eq(0).addClass('slick-active');
+
+         // On before slide change match active thumbnail to current slide
+         $('.slider').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+          var mySlideNumber = nextSlide;
+          $('.slider-nav-thumbnails .slick-slide').removeClass('slick-active');
+          $('.slider-nav-thumbnails .slick-slide').eq(mySlideNumber).addClass('slick-active');
+        });
+
+      $('.parent-container').magnificPopup({
+        delegate: 'a', // child items selector, by clicking on it popup will open
+        type: 'image',
+        mainClass: 'mfp-with-zoom',
+        gallery:{
+    enabled:true
+  }
+
+        // other options
+      });
+    </script>
+  </body>
+</html>
